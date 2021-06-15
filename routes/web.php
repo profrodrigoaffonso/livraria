@@ -40,3 +40,11 @@ Route::prefix('autores')->group(function(){
     Route::get('/{id}/edit', 'App\Http\Controllers\AutoresController@edit')->name('autores.edit');
     Route::put('/update', 'App\Http\Controllers\AutoresController@update')->name('autores.update');
 });
+
+Route::prefix('livros')->group(function(){
+    Route::get('/', 'App\Http\Controllers\LivrosController@index')->name('livros.index');
+    Route::get('/create', 'App\Http\Controllers\LivrosController@create')->name('livros.create');
+    Route::post('/store', 'App\Http\Controllers\LivrosController@store')->name('livros.store');
+    Route::get('/{id}/edit', 'App\Http\Controllers\LivrosController@edit')->name('livros.edit');
+    Route::put('/update', 'App\Http\Controllers\LivrosController@update')->name('livros.update');
+});
