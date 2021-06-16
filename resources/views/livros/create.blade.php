@@ -42,28 +42,44 @@
       @if($errors->has('codigo'))
       Digite o código
       @endif
-    <div class="form-group">
+    {{-- <div class="form-group">
       <label for="exampleInputEmail1">Título</label>
       <input type="text" class="form-control" id="titulo" name="titulo" required>
       @if($errors->has('codigo'))
       Digite o código
       @endif
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Ano</label>
-      <input type="text" maxlength="4" class="form-control" id="ano" name="ano" required>
-      @if($errors->has('codigo'))
-      Digite o código
-      @endif
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Descrição</label>
-      <textarea class="form-control" id="descricao" name="descricao" required></textarea>
-      @if($errors->has('codigo'))
-      Digite o código
-      @endif
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Salvar</button>
-  </form>
+    </div> --}}
+      @component('components.forms.input',[
+          'label'     => 'Título',
+          'name'      => 'titulo',
+          'id'        => 'titulo',
+          'value'     => '',
+          'maxlength' => 150,
+          'required'  => 'required',
+      ])
+      @endcomponent
+      @component('components.forms.input',[
+          'label'     => 'Ano',
+          'name'      => 'ano',
+          'id'        => 'ano',
+          'value'     => '',
+          'maxlength' => 4,
+          'required'  => 'required',
+      ])
+      @endcomponent
+      @component('components.forms.textarea',[
+          'label'     => 'Descrição',
+          'name'      => 'descricao',
+          'id'        => 'descricao',
+          'value'     => '',
+          'required'  => 'required',
+      ])
+      @endcomponent      
+      @component('components.forms.button', [
+          'type'    => 'submit',
+          'class'   => 'btn btn-primary',
+          'label'   => 'Salvar'
+      ])        
+      @endcomponent  
+    </form>
 @endsection

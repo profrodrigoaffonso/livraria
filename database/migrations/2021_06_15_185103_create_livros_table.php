@@ -18,8 +18,8 @@ class CreateLivrosTable extends Migration
             $table->integer('editora_id');
             $table->integer('estante_id');
             $table->integer('autor_id');
-            $table->string('titulo');
-            $table->string('ano');
+            $table->string('titulo', 150);
+            $table->string('ano', 4);
             $table->text('descricao');            
             $table->timestamps();
         });

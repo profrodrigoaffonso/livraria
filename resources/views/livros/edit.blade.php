@@ -2,9 +2,14 @@
 
 @section('content')
 <form action="{{ route('livros.update') }}" method="POST">
-<input type="hidden" id="id" name="id" value="{{ $livro->id }}" required>
     @csrf
     @method('PUT')
+    @component('components.forms.hidden',[
+        'name'      => 'id',
+        'id'        => 'id',
+        'value'     => $livro->id
+    ])
+    @endcomponent
     @component('components.forms.select',[
         'label'     => 'Autor',
         'name'      => 'autor_id',
@@ -33,30 +38,40 @@
         'values'    => $editoras,
         'required'  => 'required',
         'selected'  => $livro->autor_id
+    ])    
+    @endcomponent
+    @component('components.forms.input',[
+        'label'     => 'Título',
+        'name'      => 'titulo',
+        'id'        => 'titulo',
+        'value'     => $livro->titulo,
+        'maxlength' => 150,
+        'required'  => 'required',
     ])
     @endcomponent
-    <div class="form-group">
-      <label for="exampleInputEmail1">Título</label>
-      <input type="text" class="form-control" id="titulo" name="titulo" value="{{ $livro->titulo }}" required>
-      @if($errors->has('codigo'))
-      Digite o código
-      @endif
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Ano</label>
-      <input type="text" maxlength="4" class="form-control" id="ano" name="ano" value="{{ $livro->ano }}" required>
-      @if($errors->has('codigo'))
-      Digite o código
-      @endif
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Descrição</label>
-      <textarea class="form-control" id="descricao" name="descricao" required>{{ $livro->descricao }}</textarea>
-      @if($errors->has('codigo'))
-      Digite o código
-      @endif
-    </div>
+    @component('components.forms.input',[
+        'label'     => 'Ano',
+        'name'      => 'ano',
+        'id'        => 'ano',
+        'value'     => $livro->ano,
+        'maxlength' => 4,
+        'required'  => 'required',
+    ])
+    @endcomponent
+    @component('components.forms.textarea',[
+        'label'     => 'Descrição',
+        'name'      => 'descricao',
+        'id'        => 'descricao',
+        'value'     => $livro->descricao,
+        'required'  => 'required',
+    ])
+    @endcomponent 
+    @component('components.forms.button', [
+        'type'    => 'submit',
+        'class'   => 'btn btn-primary',
+        'label'   => 'Salvar'
+    ])        
+    @endcomponent  
     
-    <button type="submit" class="btn btn-primary">Salvar</button>
   </form>
 @endsection
