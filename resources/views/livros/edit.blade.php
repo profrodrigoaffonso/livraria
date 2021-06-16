@@ -7,12 +7,14 @@
     @method('PUT')
     <div class="form-group">
       <label for="exampleInputEmail1">Autor</label>
-      <select class="form-control" id="autor_id" name="autor_id" required>
-          <option></option>
-          @foreach($autores as $autor)
-              <option {{($livro->autor_id == $autor->id ? 'selected' : '')}} value="{{ $autor->id }}">{{ $autor->nome }}</option>
-          @endforeach
-      </select>
+      @component('components.forms.select',[
+          'name'      => 'autor_id',
+          'id'        => 'autor_id',
+          'values'    => $autores,
+          'required'  => 'required',
+          'selected'  => $livro->autor_id
+      ])
+      @endcomponent
       @if($errors->has('codigo'))
       Digite o código
       @endif

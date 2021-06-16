@@ -1,40 +1,46 @@
 @extends('layouts.admin')
 
 @section('content')
-<form action="{{ route('livros.store') }}" method="POST">
+  <form action="{{ route('livros.store') }}" method="POST">
     @csrf
     <div class="form-group">
-      <label for="exampleInputEmail1">Autor</label>
-      <select class="form-control" id="autor_id" name="autor_id" required>
-          <option></option>
-          @foreach($autores as $autor)
-              <option value="{{ $autor->id }}">{{ $autor->nome }}</option>
-          @endforeach
-      </select>
+      <label for="exampleInputEmail1">Autor</label>      
+      @component('components.forms.select',[
+          'name'      => 'autor_id',
+          'id'        => 'autor_id',
+          'values'    => $autores,
+          'required'  => 'required',
+          'selected'  => ''
+      ])
+      @endcomponent
       @if($errors->has('codigo'))
       Digite o código
       @endif
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Estante</label>
-      <select class="form-control" id="estante_id" name="estante_id" required>
-          <option></option>
-          @foreach($estantes as $estante)
-              <option value="{{ $estante->id }}">{{ $estante->nome }}</option>
-          @endforeach
-      </select>
+      <label for="exampleInputEmail1">Estante</label>      
+      @component('components.forms.select',[
+          'name'      => 'estante_id',
+          'id'        => 'estante_id',
+          'values'    => $estantes,
+          'required'  => 'required',
+          'selected'  => ''
+      ])
+      @endcomponent
       @if($errors->has('codigo'))
       Digite o código
       @endif
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Editora</label>
-      <select class="form-control" id="editora_id" name="editora_id" required>
-          <option></option>
-          @foreach($editoras as $editora)
-              <option value="{{ $editora->id }}">{{ $editora->nome }}</option>
-          @endforeach
-      </select>
+      <label for="exampleInputEmail1">Editora</label>      
+      @component('components.forms.select',[
+          'name'      => 'editora_id',
+          'id'        => 'editora_id',
+          'values'    => $editoras,
+          'required'  => 'required',
+          'selected'  => ''
+      ])
+      @endcomponent
       @if($errors->has('codigo'))
       Digite o código
       @endif
