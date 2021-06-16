@@ -4,15 +4,26 @@
 <form action="{{ route('estantes.update') }}" method="POST">
 @method('PUT')
     @csrf
-    <div class="form-group">
-      <input type="hidden" id="id" name="id" value="{{ $estante->id }}">
-      <label for="exampleInputEmail1">Nome</label>
-      <input type="text" class="form-control" id="nome" name="nome" value="{{ $estante->nome }}" required>
-      @if($errors->has('codigo'))
-      Digite o código
-      @endif
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    @component('components.forms.hidden',[
+        'name'      => 'id',
+        'id'        => 'id',
+        'value'     => $estante->id
+    ])
+    @endcomponent
+    @component('components.forms.input',[
+        'label'     => 'Nome',
+        'name'      => 'nome',
+        'id'        => 'nome',
+        'value'     => $estante->nome,
+        'maxlength' => 100,
+        'required'  => 'required',
+    ])
+    @endcomponent
+    @component('components.forms.button', [
+        'type'    => 'submit',
+        'class'   => 'btn btn-primary',
+        'label'   => 'Salvar'
+    ])        
+    @endcomponent
   </form>
 @endsection

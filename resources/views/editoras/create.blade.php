@@ -3,14 +3,20 @@
 @section('content')
 <form action="{{ route('editoras.store') }}" method="POST">
     @csrf
-    <div class="form-group">
-      <label for="exampleInputEmail1">Nome</label>
-      <input type="text" class="form-control" id="nome" name="nome" required>
-      @if($errors->has('codigo'))
-      Digite o código
-      @endif
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    @component('components.forms.input',[
+        'label'     => 'Nome',
+        'name'      => 'nome',
+        'id'        => 'nome',
+        'value'     => '',
+        'maxlength' => 100,
+        'required'  => 'required',
+    ])
+    @endcomponent
+    @component('components.forms.button', [
+        'type'    => 'submit',
+        'class'   => 'btn btn-primary',
+        'label'   => 'Salvar'
+    ])        
+    @endcomponent   
   </form>
 @endsection

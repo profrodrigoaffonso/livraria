@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin');
 });
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+Route::post('/login', 'Auth\LoginController@login')->name('login.login');
 
 Route::prefix('editoras')->group(function(){
     Route::get('/', 'App\Http\Controllers\EditorasController@index')->name('editoras.index');

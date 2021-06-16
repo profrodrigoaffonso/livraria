@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<form action="{{ route('livros.update') }}" method="POST">
+  <form action="{{ route('livros.update') }}" method="POST">
     @csrf
     @method('PUT')
     @component('components.forms.hidden',[
