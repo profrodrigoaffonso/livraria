@@ -17,16 +17,17 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
+Route::get('/admin', function () {
     return view('admin');
-});
+})->middleware('auth');
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('auth.login');
-});
-Route::post('/login', 'Auth\LoginController@login')->name('login.login');
+})->name('login');
+Route::post('/login', 'App\Http\Controllers\LoginController@authenticate')->name('login.login');
+Route::get('/logout', 'App\Http\Controllers\LoginController@logout')->name('login.logout');
 
-Route::prefix('editoras')->group(function(){
+Route::prefix('editoras')->middleware('auth')->group(function(){
     Route::get('/', 'App\Http\Controllers\EditorasController@index')->name('editoras.index');
     Route::get('/create', 'App\Http\Controllers\EditorasController@create')->name('editoras.create');
     Route::post('/store', 'App\Http\Controllers\EditorasController@store')->name('editoras.store');
@@ -34,7 +35,7 @@ Route::prefix('editoras')->group(function(){
     Route::put('/update', 'App\Http\Controllers\EditorasController@update')->name('editoras.update');
 });
 
-Route::prefix('estantes')->group(function(){
+Route::prefix('estantes')->middleware('auth')->group(function(){
     Route::get('/', 'App\Http\Controllers\EstantesController@index')->name('estantes.index');
     Route::get('/create', 'App\Http\Controllers\EstantesController@create')->name('estantes.create');
     Route::post('/store', 'App\Http\Controllers\EstantesController@store')->name('estantes.store');
@@ -42,7 +43,7 @@ Route::prefix('estantes')->group(function(){
     Route::put('/update', 'App\Http\Controllers\EstantesController@update')->name('estantes.update');
 });
 
-Route::prefix('autores')->group(function(){
+Route::prefix('autores')->middleware('auth')->group(function(){
     Route::get('/', 'App\Http\Controllers\AutoresController@index')->name('autores.index');
     Route::get('/create', 'App\Http\Controllers\AutoresController@create')->name('autores.create');
     Route::post('/store', 'App\Http\Controllers\AutoresController@store')->name('autores.store');
@@ -50,7 +51,7 @@ Route::prefix('autores')->group(function(){
     Route::put('/update', 'App\Http\Controllers\AutoresController@update')->name('autores.update');
 });
 
-Route::prefix('livros')->group(function(){
+Route::prefix('livros')->middleware('auth')->group(function(){
     Route::get('/', 'App\Http\Controllers\LivrosController@index')->name('livros.index');
     Route::get('/create', 'App\Http\Controllers\LivrosController@create')->name('livros.create');
     Route::post('/store', 'App\Http\Controllers\LivrosController@store')->name('livros.store');
