@@ -3,9 +3,9 @@
 @section('content')
   <form action="{{ route('livros.store') }}" method="POST">
     @csrf
-    <div class="form-group">
-      <label for="exampleInputEmail1">Autor</label>      
+   
       @component('components.forms.select',[
+          'label'     => 'Autor',
           'name'      => 'autor_id',
           'id'        => 'autor_id',
           'values'    => $autores,
@@ -16,10 +16,9 @@
       @if($errors->has('codigo'))
       Digite o código
       @endif
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Estante</label>      
+       
       @component('components.forms.select',[
+          'label'     => 'Estante',
           'name'      => 'estante_id',
           'id'        => 'estante_id',
           'values'    => $estantes,
@@ -30,10 +29,9 @@
       @if($errors->has('codigo'))
       Digite o código
       @endif
-    </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Editora</label>      
+       
       @component('components.forms.select',[
+          'label'     => 'Editora',
           'name'      => 'editora_id',
           'id'        => 'editora_id',
           'values'    => $editoras,
@@ -44,7 +42,6 @@
       @if($errors->has('codigo'))
       Digite o código
       @endif
-    </div>
     <div class="form-group">
       <label for="exampleInputEmail1">Título</label>
       <input type="text" class="form-control" id="titulo" name="titulo" required>
