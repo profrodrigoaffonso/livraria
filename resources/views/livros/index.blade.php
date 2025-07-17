@@ -10,7 +10,7 @@
                 <th scope="col">Autor</th>
                 <th scope="col">Editora</th>
                 <th scope="col">Estante</th>
-                <th></th>             
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,9 +20,9 @@
                 <td>{{ $livro->autor }}</td>
                 <td>{{ $livro->editora }}</td>
                 <td>{{ $livro->estante }}</td>
-                <td><a href="/livros/{{ $livro->id }}/edit">Editar</a></td>              
+                <td><a href="{{ route('livros.edit', $livro->id) }}">Editar</a></td>
             </tr>
-            @endforeach            
+            @endforeach
         </tbody>
     </table>
 @endsection

@@ -7,16 +7,16 @@
         <thead>
             <tr>
                 <th scope="col">Nome</th>
-                <th></th>             
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach($autores as $autor)
             <tr>
                 <td>{{ $autor->nome }}</td>
-                <td><a href="/autores/{{ $autor->id }}/edit">Editar</a></td>              
+                <td><a href="{{ route('autores.edit', $autor->id) }}">Editar</a></td>
             </tr>
-            @endforeach            
+            @endforeach
         </tbody>
     </table>
 @endsection

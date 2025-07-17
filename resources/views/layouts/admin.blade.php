@@ -22,7 +22,7 @@
               <a class="p-2 text-dark" href="{{ route('autores.index') }}">Autores</a>
               <a class="p-2 text-dark" href="{{ route('editoras.index') }}">Editoras</a>
               <a class="p-2 text-dark" href="{{ route('estantes.index') }}">Estantes</a>
-              <a class="p-2 text-dark" href="{{ route('autores.index') }}">Livros</a>
+              <a class="p-2 text-dark" href="{{ route('livros.index') }}">Livros</a>
               <a class="p-2 text-dark" href="{{ route('login.logout') }}">Sair</a>
             </nav>
             {{-- <a class="btn btn-outline-primary" href="#">Cadastro</a> --}}
